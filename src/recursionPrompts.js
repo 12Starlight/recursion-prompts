@@ -38,4 +38,37 @@ console.log(stepsToZero(n));
 // 9. Yes, return message that reached zero
 console.log('Reached zero');
 
-// 10. The above return pops the current invocation off the
+// 10. The above return pops the current invocation off the stack
+
+/*
+Understanding Recursion: A JavaScript Example
+	*	https://www.youtube.com/watch?v=py7ZWFjrwEs
+
+*/
+
+let factorial = function fac(num) {
+	if (num === 1) {
+		return 1;
+	}
+
+	return num * fac(num - 1);
+};
+
+let final = factorial(4);
+console.log(final);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

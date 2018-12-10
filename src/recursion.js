@@ -6,34 +6,109 @@
 // denoted by n!, is the product of all positive integers less than or equal to n.
 // Example: 5! = 5 x 4 x 3 x 2 x 1 = 120
 // factorial(5); // 120
-var factorial = function(n) {
+var factorial = function(n)	{
+	if(n === 0){
+		return 1;
+	} 
+	if(n < 0) {
+		return null;
+	};
+	return n*factorial(n-1);
 };
 
-Do you see me?
 
 // 2. Compute the sum of an array of integers.
 // sum([1,2,3,4,5,6]); // 21
 var sum = function(array) {
-};
+	// let total = 0
+	if(array.length === 0){
+		return 0;
+	}
+	if(array.length === 1){
+		return array[0];
+	}
+	var arrayCopy = array.slice(0)
+	//for(var i = 0; i < array.length; i++){
+	return arrayCopy.pop()+sum(arrayCopy);
+	//};
 
+};
 // 3. Sum all numbers in an array containing nested arrays.
 // arraySum([1,[2,3],[[4]],5]); // 15
 var arraySum = function(array) {
+let newArr = [];
+let total = 0;
+	array.forEach(function(element){
+		if(Array.isArray(element)) {
+			newArr = newArr.concat(arraySum(element));
+		}
+		else {
+			newArr.push(element);
+		}
+	});
+		if(newArr.length === 0){
+			return total;
+		}
+		else {
+			total += newArr.pop();
+		}
+		return total + arraySum(newArr);
 };
+
 
 // 4. Check if a number is even.
 var isEven = function(n) {
+	if(n === 0){
+		return true;
+	} else if( n === -1 || n === 1){
+		return false;
+	}
+
+	if(n > 0){
+		return isEven(n - 2);
+	} else {
+		return isEven(n + 2);
+	}
 };
 
 // 5. Sum all integers below a given integer.
 // sumBelow(10); // 45
 // sumBelow(7); // 21
 var sumBelow = function(n) {
+	let total = 0;
+	if(n === 0){
+		return total;
+	}
+	if(n > 0){
+	return (n - 1)  + sumBelow(n - 1);
+	} 
+	else {
+		return (n + 1) + sumBelow(n + 1);
+	}
 };
 
 // 6. Get the integers within a range (x, y).
 // range(2,9); // [3,4,5,6,7,8]
 var range = function(x, y) {
+	let arr = [];
+	if(x < y){
+		if(y - x === 0 || y - x === 1){
+			return arr;
+		} else {
+			arr = range(x, y - 1);
+			arr.push(y - 1); 
+		}
+	}
+	if(y < x){
+		if( x - y === 0 || x - y === 1){
+			return arr;
+		} else {
+			arr = range(x, y + 1);
+			arr.push(y + 1); 
+		}
+
+	}
+	return arr;
 };
 
 // 7. Compute the exponent of a number.
@@ -42,6 +117,14 @@ var range = function(x, y) {
 // exponent(4,3); // 64
 // https://www.khanacademy.org/computing/computer-science/algorithms/recursive-algorithms/a/computing-powers-of-a-number
 var exponent = function(base, exp) {
+	if(exp === 0){
+		return 1;
+	}
+	if(exp > 0){
+		return base * exponent(base, exp - 1);
+	}else if(exp < 0){
+		return base * 1/exponent(base, -exp + 1);
+	}
 };
 
 // 8. Determine if a number is a power of two.
@@ -49,14 +132,32 @@ var exponent = function(base, exp) {
 // powerOfTwo(16); // true
 // powerOfTwo(10); // false
 var powerOfTwo = function(n) {
+	if(n === 1){
+		return true;
+	} else if(n === 0 || n % 2 === 1){
+		return false;
+	}
+	return powerOfTwo(n/2);
 };
 
 // 9. Write a function that reverses a string.
 var reverse = function(string) {
+	if(string.length === 0){
+		return '';
+	}
+	return string[string.length - 1] + reverse(string.slice(0, string.length - 1))
 };
 
 // 10. Write a function that determines if a string is a palindrome.
 var palindrome = function(string) {
+	var lowercase = string.trim().toLowerCase();
+	if(lowercase[0] !== lowercase[lowercase.length - 1]){
+		return false;
+	};
+	if(lowercase.length === 0 || lowercase.length === 1){
+		return true;
+	};
+	return palindrome(lowercase.slice(1, lowercase.length - 1));
 };
 
 // 11. Write a function that returns the remainder of x divided by y without using the
@@ -65,6 +166,18 @@ var palindrome = function(string) {
 // modulo(17,5) // 2
 // modulo(22,6) // 4
 var modulo = function(x, y) {
+	if(y === 0){
+		return NaN;
+	};
+	if(x < 0 || y < 0){
+		
+	}
+	if(x < y){
+
+	}
+	if(y < x){
+
+	}
 };
 
 // 12. Write a function that multiplies two numbers without using the * operator or
